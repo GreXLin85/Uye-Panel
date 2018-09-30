@@ -24,8 +24,7 @@ namespace ConsoleApp5
                 if (giris == false)
                 {
                     Console.Clear();
-                    Console.WriteLine("Kullanıcı adınız '{0}' olarak belirlendi", k_ad);
-                    Console.WriteLine("Parolanız '{0}' olarak belirlendi.", pass);
+                    Console.WriteLine("Kullanıcı adınız '{0}' olarak belirlendi.\nParolanız '{1}' olarak belirlendi.", k_ad, pass);
                     string giris_ad, giris_pass;
                     Console.WriteLine("Lütfen giriş yapınız");
                     Console.Write("Kullanıcı adı:");
@@ -37,24 +36,30 @@ namespace ConsoleApp5
                         giris = true;
                         Console.WriteLine("Programa başarıyla giriş yapıldı");
                         bastan:
-                        Console.Write("Üye Menüsü V1\nHoşgeldin, {0}\n1-)Kullanıcı Adını Düzenle\n2-)Parolanı Düzenle\n99-)Çıkış Yap\n>>",k_ad);
-                        int menu = int.Parse(Console.ReadLine());
+                        Console.Write("Üye Menüsü V1\nHoşgeldin, {0}\n1-)Kullanıcı Adını Düzenle\n2-)Parolanı Düzenle\n3-)Çıkış Yap\n>>",k_ad);
+                        string menu = Console.ReadLine();
+                        if (string.IsNullOrEmpty(menu) == true)
+                        {
+                            Console.WriteLine("Bu geçerli bir cevap değil!");
+                            goto bastan;
+                        }
                         switch (menu)
                         {
-                            case 1:
+
+                            case "1":
                                 Console.Write("Kullanıcı adı değiştir >> ");
                                 k_ad = Console.ReadLine();
                                 Console.WriteLine("Yeni kullanıcı adınız : '{0}' olarak belirilendi.",k_ad);
                                 goto bastan;
-                            case 2:
+                            case "2":
                                 Console.Write("Parola değiştir >> ");
                                 pass = Console.ReadLine();
                                 Console.WriteLine("Yeni parolanız : '{0}' olarak belirilendi.", pass);
                                 goto bastan;
-                            case 3:
+                            case "3":
                                 Console.Write("Çıkış yapmak istediğinize emin misiniz?[E/H]");
-                                string cikis = Console.ReadLine();
-                                if (cikis == "e".ToUpper())
+                                string cikis = Console.ReadLine().ToUpper();
+                                if (cikis == "E")
                                 {
                                     break;
                                 }
@@ -63,6 +68,7 @@ namespace ConsoleApp5
                                     goto bastan;
                                 }
                             default:
+                                
                                 Console.WriteLine("Bu geçerli bir cevap değil!");
                                 goto bastan;
                         }
